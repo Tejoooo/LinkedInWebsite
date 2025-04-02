@@ -13,6 +13,7 @@ A web application that fetches and displays LinkedIn profile data based on a pro
 - Python 3.x
 - Flask
 - Requests
+- proxyurl API KEY
 
 ## Installation & Setup
 

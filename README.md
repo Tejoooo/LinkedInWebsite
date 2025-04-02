@@ -31,7 +31,14 @@ A web application that fetches and displays LinkedIn profile data based on a pro
     ```
     py backend.py
 
-4. ***API End Point**:
+4. **API End Point**:
 
     ```
     GET http://127.0.0.1:5000/fetch_linkedin?url=<profile_url>
+
+
+## Follow me on Instagram 
+
+    ```
+    @digg_deeperr on instagram for more great content
+

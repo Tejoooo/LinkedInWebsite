@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkedIn Profile Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="portfolio-container">
+      <header id="header">
+        <div id="profile-header">
+          <img id="profile-pic" src="" alt="Profile Picture" />
+          <h1 id="full-name">Full Name</h1>
+          <p id="headline">Headline</p>
+        </div>
+      </header>
+
+      <section id="about">
+        <h2>About</h2>
+        <p id="summary">Summary goes here...</p>
+      </section>
+
+      <section id="experience">
+        <h2>Experience</h2>
+        <ul id="experience-list"></ul>
+      </section>
+
+      <section id="education">
+        <h2>Education</h2>
+        <ul id="education-list"></ul>
+      </section>
+
+     
+      
+      <section id="accomplishments">
+        <h2>Accomplishments & Projects</h2>
+        <ul id="accomplishments-list"></ul>
+      </section>
+      
+      <footer id="footer">
+        <p>Connect with me on LinkedIn.</p>
+      </footer>
+    </div>
+
+    <script>
+        function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    const linkedinUrl = getQueryParam("url");
+
+    if (linkedinUrl) {
+        fetchUserProfile(linkedinUrl);
+    } else {
+        alert("No LinkedIn URL provided!");
+    }
+
+      const apiUrl = "http://127.0.0.1:5000/fetch_linkedin";
+      async function fetchUserProfile(linkedinUrl) {
+        try {
+          const response = await fetch(`${apiUrl}?url=${encodeURIComponent(linkedinUrl)}`);
+          const userData = await response.json();
+          console.log(userData);
+          if (userData.error) {
+            console.error("Error:", userData.error);
+            return;
+          }
+          document.getElementById("profile-pic").src =
+            userData.profile_pic_url || "default-profile-pic.jpg";
+          document.getElementById(
+            "full-name"
+          ).textContent = `${userData.first_name} ${userData.last_name}`;
+          document.getElementById("headline").textContent =
+            userData.headline || "No headline available";
+          document.getElementById("summary").textContent =
+            userData.summary || "No summary available";
+          const experienceList = document.getElementById("experience-list");
+          experienceList.innerHTML = "";
+
+          // Function to format dates
+          const formatDate = (date) => {
+            const options = { year: "numeric", month: "long" };
+            return new Date(date.year, date.month - 1).toLocaleDateString(
+              "en-US",
+              options
+            );
+          };
+
+          // Iterate through each experience
+          userData.experiences.forEach((job) => {
+            const listItem = document.createElement("li");
+
+            // Create a link for the company name
+            const companyLink = document.createElement("a");
+            companyLink.href = job.company_linkedin_profile_url;
+            companyLink.target = "_blank";
+            companyLink.textContent = job.company;
+
+            // Format the date range
+            const startDate = job.starts_at
+              ? formatDate(job.starts_at)
+              : "Start date not available";
+            const endDate = job.ends_at ? formatDate(job.ends_at) : "Present";
+            const dateRange = `${startDate} - ${endDate}`;
+
+            // Create the content for the list item
+            const titleSpan = document.createElement("span");
+            titleSpan.className = "experience-title"; // Add class for styling
+            titleSpan.textContent = job.title.toUpperCase();
+
+            listItem.appendChild(titleSpan);
+            listItem.appendChild(companyLink);
+            const dateSpan = document.createElement("span");
+            dateSpan.className = "experience-date"; // Add class for styling
+            dateSpan.textContent = ` ${dateRange}`;
+
+            // Append the date span to the list item
+            listItem.appendChild(dateSpan);
+            // Append the list item to the experience list
+            experienceList.appendChild(listItem);
+          });
+
+          const educationList = document.getElementById("education-list");
+          userData.education.forEach((education) => {
+            const listItem = document.createElement("li");
+            const schoolLink = document.createElement("a");
+            schoolLink.href = education.school_linkedin_profile_url;
+            schoolLink.target = "_blank";
+            schoolLink.textContent = education.school;
+
+            // Add the dates (if available)
+            const formatDate = (date) => {
+              const options = { year: "numeric", month: "long" };
+              return new Date(date.year, date.month - 1).toLocaleDateString(
+                "en-US",
+                options
+              );
+            };
+
+            const dates =
+              education.starts_at && education.ends_at
+                ? `${formatDate(education.starts_at)} - ${formatDate(
+                    education.ends_at
+                  )}`
+                : "No dates available";
+
+            // Append all elements
+            listItem.appendChild(schoolLink);
+            const dateSpan = document.createElement("span");
+            dateSpan.className = "education-date"; // Add class for styling
+            dateSpan.textContent = ` ${dates}`;
+
+            // Append the date span to the list item
+            listItem.appendChild(dateSpan);
+            // Append the list item to the education section
+            educationList.appendChild(listItem);
+          });
+          
+          const accomplishmentsList = document.getElementById("accomplishments-list");
+accomplishmentsList.innerHTML = "";
+userData.accomplishment_projects.forEach((project) => {
+  const listItem = document.createElement("li");
+
+  const titleSpan = document.createElement("span");
+  titleSpan.className = "project-title";
+  titleSpan.textContent = project.title;
+
+  // Format the project dates
+  const startDate = project.starts_at
+    ? `${project.starts_at.month}/${project.starts_at.day}/${project.starts_at.year}`
+    : "Start date not available";
+  const endDate = project.ends_at
+    ? `${project.ends_at.month}/${project.ends_at.day}/${project.ends_at.year}`
+    : "End date not available";
+  const dateRange = `${startDate} - ${endDate}`;
+
+  const dateSpan = document.createElement("span");
+  dateSpan.className = "project-date";
+  dateSpan.textContent = ` (${dateRange})`;
+
+  const descriptionDiv = document.createElement("div");
+  descriptionDiv.className = "project-description";
+  descriptionDiv.textContent = project.description;
+  descriptionDiv.style.display = "none"; // Initially hide description
+
+  // Add a click event to toggle the description visibility
+  listItem.onclick = () => {
+    const isDescriptionVisible = descriptionDiv.style.display === "block";
+    const isTitleAndDateVisible = titleSpan.style.display !== "none" && dateSpan.style.display !== "none";
+
+    if (isTitleAndDateVisible) {
+      titleSpan.style.display = "none"; // Hide title
+      dateSpan.style.display = "none"; // Hide date
+      descriptionDiv.style.display = "block"; // Show description
+    } else {
+      titleSpan.style.display = "block"; // Show title
+      dateSpan.style.display = "block"; // Show date
+      descriptionDiv.style.display = "none"; // Hide description
+    }
+  };
+
+  listItem.appendChild(titleSpan);
+  listItem.appendChild(dateSpan);
+  listItem.appendChild(descriptionDiv);
+
+  accomplishmentsList.appendChild(listItem);
+});
+
+          
+          
+         
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      }
+      fetchUserProfile(linkedinUrl);
+    </script>
+  </body>
+</html>

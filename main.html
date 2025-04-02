@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter URL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0077b5, #00c6ff);
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            margin-bottom: 15px;
+        }
+        button {
+            background: #0077b5;
+            color: white;
+            padding: 12px;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        button:hover {
+            background: #005a8e;
+            transform: translateY(-2px);
+        }
+        .linkedin-container {
+            margin-top: 15px;
+        }
+        .linkedin-link img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+        .linkedin-link:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+            <a href="https://www.linkedin.com/in/YOUR_PROFILE" target="_blank" class="linkedin-link">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+            </a>
+        <h2>Enter LinkedIn URL</h2>
+        <input type="text" id="urlInput" placeholder="Enter here...">
+        <button onclick="redirectToIndex()">Submit</button>
+        
+        <!-- LinkedIn Logo -->
+        
+    </div>
+
+    <script>
+        function redirectToIndex() {
+            const url = document.getElementById("urlInput").value;
+            if (url) {
+                window.location.href = `index.html?url=${encodeURIComponent(url)}`;
+            } else {
+                alert("Please enter a URL.");
+            }
+        }
+    </script>
+
+</body>
+</html>

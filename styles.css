@@ -1,0 +1,257 @@
+/* styles.css */
+
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+#portfolio-container {
+    width: 80%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#header {
+    text-align: center;
+    padding: 20px;
+}
+
+#profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0077b5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    margin: 10px auto;
+    display: block;
+}
+
+/* Hover Effects */
+#profile-pic:hover {
+    transform: scale(1.1);              /* Slight zoom effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
+    border-color: #005fa3;              /* Darker blue border on hover */
+    filter: brightness(1.2);            /* Makes the image slightly brighter */
+}
+
+/* Optional: Add a subtle rotation effect */
+#profile-pic:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+#summary {
+    font-family: 'Georgia', serif; /* Serif font for a classic and elegant feel */
+    font-size: 1.1rem; /* Slightly larger font for readability */
+    line-height: 1.1; /* Increased line height for better spacing between lines */
+    color: #555; /* Dark gray color for better contrast and readability */
+    margin-top: 10px; /* Add a little space above the paragraph */
+    letter-spacing: 0.5px; /* Small spacing between letters for a cleaner look */
+    text-align: justify; /* Justify the text for a neat, aligned appearance */
+}
+#full-name {
+    font-size: 24px;        /* Larger size for prominence */
+    font-weight: bold;      /* Makes the name stand out */
+    color: #0077b5;         /* A strong, professional blue */
+    margin: 10px 0 5px;     /* Vertical spacing for balance */
+    text-align: center;     /* Centers the name */
+    letter-spacing: 1px;    /* Slight spacing for clarity */
+    text-transform: uppercase; /* Ensures the first letter of each word is capitalized */
+    padding: 5px;           /* Adds subtle padding for a neat look */
+    background-color: #f0f8ff; /* Light background to highlight the name */
+    border-radius: 5px;     /* Rounds the corners for a softer look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+}
+#full-name:hover {
+    transform: scale(1.1);           /* Slight zoom-in effect */
+    color: #005fa3;                  /* Darker blue color on hover */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adds depth with shadow */
+}
+
+#headline {
+    font-size: 20px;       /* Larger font for emphasis */
+    font-weight: bold;     /* Makes the text stand out */
+    color: #333;           /* Dark gray for readability */
+    text-align: center;    /* Centers the text */
+    margin: 20px 0;        /* Adds vertical spacing */
+    padding: 10px;         /* Adds some padding around the text */
+    line-height: 1.5;      /* Improves readability */
+    text-transform: uppercase; /* Makes the text all caps */
+    letter-spacing: 1px;   /* Slight spacing between letters */
+    background-color: #f9f9f9; /* Light gray background for contrast */
+    border-bottom: 3px solid #0077b5; /* Adds a blue underline for style */
+}
+
+
+#cover-image-container {
+    text-align: center;
+}
+
+#cover-image {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Section Styles */
+section {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Title of the section */
+h2 {
+    color: #0077b5;
+    border-bottom: 2px solid #0077b5;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Experience list styles */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Individual experience list item styles */
+ul li {
+    background: #e9f5ff;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 5px solid #0077b5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+ul li:hover {
+    transform: translateX(10px); /* Slight slide effect on hover */
+    box-shadow: 0 4px 15px rgba(0, 119, 181, 0.1);
+}
+
+/* Job Title and Company Link Styles */
+ul li a {
+    font-weight: bold;
+    color: #0077b5;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    text-transform: uppercase;
+}
+
+ul li a:hover {
+    color: #005f8b;
+}
+
+/* Date range styles */
+ul li .date-range {
+    font-size: 14px;
+    color: #888;
+    text-align: right;
+}
+
+ul li .date-range::before {
+    content: '• ';
+    color: #0077b5;
+}
+
+/* Formatting the date in a more human-friendly way */
+ul li .date-range span {
+    display: block;
+    margin-top: 5px;
+}
+
+#footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.experience-title {       /* Makes the title stand out */
+    color: #030303;           /* Blue color for a professional look */
+    text-transform: uppercase; /* Ensures the title is in all caps */
+    font-size: 18px;          /* Slightly larger font for emphasis */
+    margin-right: 5px;        /* Adds spacing between title and company */
+}
+
+.experience-date {
+    font-weight: bold;        /* Makes the date bold */
+    color: #888;              /* Light gray for a subtle look */
+    font-size: 14px;          /* Smaller font size for a clean look */
+    font-style: italic;       /* Optional: Adds a touch of elegance */
+    margin-left: 5px;         /* Adds space between company name and date */
+}
+.education-date {
+    font-weight: bold;        /* Makes the date bold */
+    color: #888;              /* Light gray for a subtle look */
+    font-size: 14px;          /* Smaller font size for a clean look */
+    font-style: italic;       /* Optional: Adds a touch of elegance */
+    margin-left: 5px;         /* Adds space between company name and date */
+}
+
+.project-date {
+    font-weight: bold;        /* Makes the date bold */
+    color: #888;              /* Light gray for a subtle look */
+    font-size: 14px;          /* Smaller font size for a clean look */
+    font-style: italic;       /* Optional: Adds a touch of elegance */
+    margin-left: 5px;         /* Adds space between company name and date */
+}
+
+.project-title{
+    font-weight: bold;
+    color: #0077b5;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    text-transform: uppercase;
+}
+
+#accomplishments-list {
+    list-style: none; /* Remove list bullets */
+    padding: 0;
+  }
+  
+  #accomplishments-list li {
+    background: #e9f5ff;
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 5px solid #0077b5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* Indicate that the item is clickable */
+  }
+
+  .project-description {
+    display: none; /* Initially hide the description */
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  
+  

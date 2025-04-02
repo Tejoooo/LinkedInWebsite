@@ -35,6 +35,6 @@ A web application that fetches and displays LinkedIn profile data based on a pro
     GET http://127.0.0.1:5000/fetch_linkedin?url=<profile_url>
 ## Follow me on Instagram 
 
-    ```sh
+    ```
     @digg_deeperr on instagram for more great content
-
+    ```
